@@ -1,0 +1,149 @@
+.characters{
+    padding: 15px;
+    border: 1px solid #000;
+}
+
+.item{
+    display: block;
+    height: 50px;
+    border: 1px solid #000;
+    margin-bottom: 5px;
+    background-color: #fff;
+    padding: 10px;
+}
+.horizontal{
+    display: flex;
+    padding: 15px;
+    border: 1px solid #000;
+    width: max-content;
+    margin: 15px;
+    .itemCol{
+        display: inline-block;
+        width: 200px;
+        margin: 0 10px;
+        border: 1px solid #000;
+        margin-bottom: 5px;
+        background-color: #fff;
+        padding: 10px;
+        min-height: 200px;
+    }
+}
+.titleCol{
+    text-align: center;
+    border-bottom: 1px solid #000;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.overlay{
+    overflow: auto;
+    padding: 15px;
+    background-color: #fff;
+}
+.column__wrap{
+    display: flex;
+    background-color: #E5E5E5;
+    padding: 15px;
+    border: 1px solid #000;
+    width: max-content;
+    min-width: 100%;
+    box-sizing: border-box;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 0 10px;
+    border: 1px solid #000;
+    margin-bottom: 5px;
+    background-color: #fff;
+    min-height: 200px;
+}
+.column__title{
+    padding: 10px;
+    border-bottom: 1px solid #000;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+
+.column__title:hover{
+    background-color: azure;
+}
+.column__list{
+    padding: 10px;
+    background-color: #E5E5E5;
+    flex: 1;
+}
+.column__item{
+    background-color: gray;
+    color: #fff;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+.column__item.active{
+    background-color: aquamarine;
+    color: #000;
+}
+
+.column__item__bot{
+    display: flex;
+    justify-content: flex-end;
+   
+    .btn{
+        font-size: 12px;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+    
+}
+.column__show{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    .btn{
+        margin-bottom: 5px;
+        
+    }
+    .column__show__title{
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+}
+
+.column__edit{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    input{
+        width: 150px;
+        font-size: 14px;
+    }
+}
+
+.create__item{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    input{
+        padding: 10px;
+        font-size: 14px;
+        width: 80%;
+        margin-right: 5px;
+    }
+}
+
+.create__col{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    input{
+        padding: 10px;
+        font-size: 14px;
+        margin-right: 5px;
+    }
+}
+.create__col__title{
+    font-weight: bold;
+    text-align: center;
+}
