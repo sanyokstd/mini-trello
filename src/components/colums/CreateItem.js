@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import './Colums.scss'
 
-const CreateItem = ({colId, createItem}) => {
+const CreateItem = ({colId,createItem}) => {
     const [name, setName] = useState('')
-
     const handeleOnChange = (e) => {
         setName(e.target.value)
     }
 
     const handeSubmit = (e) => {
         e.preventDefault()
+  
         if(name.length > 0){
             createItem(name, colId)
             setName('')

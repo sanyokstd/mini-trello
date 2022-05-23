@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {Draggable} from "react-beautiful-dnd";
 import ColumItems from "./ColumItems";
 import CreateItem from './CreateItem';
+import {useDeleteColMutation} from '../../api/apiSlice'
 import './Colums.scss'
 
-const Colum = ({columnName, id, index, items, changeColName, changeItemStatus, deleteCol, deleteItem, createItem}) => {
+const Colum = ({columnName, id, index, items, changeColName, changeItemStatus, deleteItem, createItem}) => {
     const [showEdit, updateShowEdit] = useState(false)
     const [title, updateTitle] = useState(columnName)
+    const [deleteCol] = useDeleteColMutation()
+
+    useEffect(() => {
+        changeColName(title, id)
+    }, [title]);
 
     const handleChange = (e) => {
         updateTitle(title => e.target.value)
-        changeColName(title, id)
-    };
+    }
 
     const showTitleBlock = (
         <div className="column__show">
@@ -32,7 +37,7 @@ const Colum = ({columnName, id, index, items, changeColName, changeItemStatus, d
     )
 
     return(
-        <Draggable draggableId={id} index={index}>
+        <Draggable draggableId={id.toString()} index={index}>
             {(provided, snapshot) => (
             <div className="column" ref={provided.innerRef} {...provided.draggableProps}>
                 <div className="column__title" {...provided.dragHandleProps}>

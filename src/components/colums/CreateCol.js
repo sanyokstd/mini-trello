@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import {useAddColumnsMutation} from '../../api/apiSlice'
+import nextId from "react-id-generator";
 import './Colums.scss'
 
-const CreateCol = ({colId, createCol}) => {
+
+const CreateCol = ({maxSortVal}) => {
     const [name, setName] = useState('')
+    const [createCol] = useAddColumnsMutation()
 
     const handeleOnChange = (e) => {
         setName(e.target.value)
@@ -10,11 +14,16 @@ const CreateCol = ({colId, createCol}) => {
 
     const handeSubmit = (e) => {
         e.preventDefault()
+        let newCol = {
+            columnName: name,
+            items: [],
+            sort: maxSortVal+1
+        } 
         if(name.length > 0){
-            createCol(name)
+            createCol(newCol)
             setName('')  
         }
-        
+
     }
 
     return(

@@ -12,7 +12,7 @@ const ColumItems = ({colId, columnName, items, changeItemStatus, deleteItem}) =>
 
     return(
         <Droppable
-            droppableId={colId}
+            droppableId={colId.toString()}
             type="LIST"
         >
         {provided => (
@@ -25,7 +25,7 @@ const ColumItems = ({colId, columnName, items, changeItemStatus, deleteItem}) =>
                         }
 
                         return(
-                            <Draggable draggableId={id} index={index} key={id}>
+                            <Draggable draggableId={id.toString()} index={index} key={id}>
                                 {(provided, snapshot) => (
                                     
                                     

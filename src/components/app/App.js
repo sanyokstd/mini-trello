@@ -1,7 +1,8 @@
 import Boards from "../boards/Boards";
 import Nav from "../nav/Nav";
 import Colums from "../colums/Colums"
-
+import store from '../../store/'
+import { Provider } from 'react-redux';
 import {
     BrowserRouter as Router,
     Switch,
@@ -27,7 +28,9 @@ function App() {
                 </Route>
 
                 <Route exact path="/colums">
-                    <Colums/>
+                    <Provider store={store}>
+                        <Colums/>
+                    </Provider>
                 </Route>
                 
             </Switch>

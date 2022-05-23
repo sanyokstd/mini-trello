@@ -1,0 +1,38 @@
+{
+  "columns": [
+    {
+      "columnName": "1",
+      "items": [
+        {
+          "id": "13e6b92e-540c-43e5-94e9-aa5409753a82",
+          "name": "1",
+          "statusActive": false
+        },
+        {
+          "id": "e613f87a-31e5-466b-8959-9d96895816c5",
+          "name": "2",
+          "statusActive": false
+        },
+        {
+          "id": "01a664d4-d4f3-4f8e-9995-f2aed1d34c6e",
+          "name": "3",
+          "statusActive": false
+        }
+      ],
+      "sort": 1,
+      "id": 1
+    },
+    {
+      "columnName": "3",
+      "items": [],
+      "sort": 3,
+      "id": 3
+    },
+    {
+      "columnName": "4",
+      "items": [],
+      "sort": 4,
+      "id": 4
+    }
+  ]
+}
