@@ -3,14 +3,13 @@ import { DragDropContext, Droppable, Draggable,} from "react-beautiful-dnd";
 import { v4 as uuidv4 } from 'uuid';
 import CreateCol from "./CreateCol";
 import Colum from "./Colum";
-import { useLocalStorage } from 'react-use';
-import { useSelector } from 'react-redux';
+// import { useLocalStorage } from 'react-use';
+// import { useSelector } from 'react-redux';
 import './Colums.scss'
-import {useGetColumnsQuery,useUpdateColumnMutation,useUpdateColumn2Mutation} from '../../api/apiSlice'
+import {useGetColumnsQuery, useUpdateColumnMutation} from '../../api/apiSlice'
 
 const Colums = () => {
     const [updateCol] = useUpdateColumnMutation()
-    const [updateCol2] = useUpdateColumn2Mutation()
     const [maxSortVal, updateMaxSortVal] = useState(0)
     const { 
         data: cols = [],

@@ -37,17 +37,8 @@ export const apiSlice = createApi({
             },
             invalidatesTags: ['Columns']
         }),
-        updateColumn2: builder.mutation({
-            query: ({sourceCol, destinationCol}) => {
-            console.log(sourceCol, destinationCol)
-                // return {
-                //     url: `/columns/${colId}`,
-                //     method: 'PUT',
-                //     body: newCol
-                // }
-            },
-        }),
+        
     }),
 })
 
-export const {useGetColumnsQuery, useAddColumnsMutation, useDeleteColMutation, useGetColumnQuery, useUpdateColumnMutation, useUpdateColumn2Mutation} = apiSlice
+export const {useGetColumnsQuery, useAddColumnsMutation, useDeleteColMutation, useGetColumnQuery, useUpdateColumnMutation} = apiSlice

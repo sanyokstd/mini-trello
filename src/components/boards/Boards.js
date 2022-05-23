@@ -11,7 +11,7 @@ const Boards = () => {
     const deleteItem = (id) => {
         let newArr = bList 
         
-        newArr = newArr.filter(item => item.id != id)  
+        newArr = newArr.filter(item => item.id !== id)  
         setBlist(newArr)
     }
 
