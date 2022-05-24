@@ -6,23 +6,34 @@ import Colum from "./Colum";
 // import { useLocalStorage } from 'react-use';
 // import { useSelector } from 'react-redux';
 import './Colums.scss'
-import {useGetColumnsQuery, useUpdateColumnMutation} from '../../api/apiSlice'
+import {useGetColumnsQuery, useUpdateColumnMutation, useUpdateColumnNotRenderMutation} from '../../api/apiSlice'
 
 const Colums = () => {
-    const [updateCol] = useUpdateColumnMutation()
+    const [updateCol] = useUpdateColumnMutation();
+    const [updateColNotRender] = useUpdateColumnNotRenderMutation();
     const [maxSortVal, updateMaxSortVal] = useState(0)
     const { 
         data: cols = [],
     } = useGetColumnsQuery();
+    
+    const [stateCols, editStateCols] = useState([])
+
+    useEffect(()=>{
+        
+        editStateCols(cols)
+        
+    },[cols])
 
     // sort cols
     const filteredColsSelector = useMemo(() => {
-        const filteredCols = cols.slice();
+        const filteredCols = stateCols.slice();
 
         filteredCols.sort((a, b) => (a.sort > b.sort) ? 1 : -1)
 
         return filteredCols
-    }, [cols])
+    }, [stateCols])
+
+    
 
     useEffect(()=>{
         let newMaxSortVal = maxSortVal;
@@ -47,13 +58,35 @@ const Colums = () => {
             sort: oldCols[result.source.index].sort
         }
 
+        // фільтрую стейт
+        oldCols = oldCols.map(item => {
+            if(item.id === oldCols[result.source.index].id){
+                return item = {
+                    ...item,
+                    sort: oldCols[result.destination.index].sort
+                }
+            }
+            if(item.id === oldCols[result.destination.index].id){
+                return item = {
+                    ...item,
+                    sort: oldCols[result.source.index].sort
+                }
+            }
+            return item
+        })
+
+        editStateCols(oldCols)
+
+        // змінюєм на сервері
         let colId = sourceCol.id
         let newCol = sourceCol
-        updateCol({colId, newCol}).then(()=>{
+        updateColNotRender({colId, newCol}).then(()=>{
             colId = destinationCol.id
             newCol = destinationCol
             updateCol({colId, newCol})
         })
+
+        
     }
 
     const listReorder = (result) => {
@@ -64,8 +97,7 @@ const Colums = () => {
         // в тій самій колонці
         if(sourceId === destinationId){
             
-            columsState.map((col)=>{
-               
+            columsState = columsState.map((col)=>{
                 if(col.id.toString() === result.source.droppableId){
                     let items = [...col.items]
                     const [reorderedItem] = items.splice(result.source.index, 1);
@@ -77,15 +109,18 @@ const Colums = () => {
                         ...col,
                         items: items
                     }
+
                     updateCol({colId, newCol})
+                    return newCol
                 }
+                return col
             })
 
         }else{
             let item;
 
             // видаляємо із старої колонки
-            columsState.map((col)=>{
+            columsState = columsState.map((col)=>{
                 if(col.id.toString() === result.source.droppableId){
                     let items = [...col.items]
                    
@@ -97,12 +132,15 @@ const Colums = () => {
                         ...col,
                         items: items
                     }
+
                     updateCol({colId, newCol})
+                    return newCol
                 }
+                return col
             })
 
             // додаємо в нову
-            columsState.filter((col, index) => {
+            columsState = columsState.map((col, index) => {
                 if(col.id.toString() == destinationId){
                     let items = [...col.items]
                     items.splice(result.destination.index, 0, item);
@@ -113,11 +151,14 @@ const Colums = () => {
                         items: items
                     }
                     updateCol({colId, newCol})
+
+                    return newCol;
                 }
+                return col
             });
         }
-
-        // updateCols(columsState)
+        console.log(columsState)
+        editStateCols(columsState)
     }
     
     function onDragEnd(result) {

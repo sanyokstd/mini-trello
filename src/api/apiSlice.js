@@ -24,11 +24,19 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ['Columns']
         }),
-        getColumn: builder.query({
-            query: (id) => `/columns/${id}`
+        updateColumnNotRender: builder.mutation({
+            query: ({colId, newCol}) => {
+                console.log('1')
+                return {
+                    url: `/columns/${colId}`,
+                    method: 'PUT',
+                    body: newCol
+                }
+            },
         }),
         updateColumn: builder.mutation({
             query: ({colId, newCol}) => {
+                console.log('2')
                 return {
                     url: `/columns/${colId}`,
                     method: 'PUT',
@@ -41,4 +49,4 @@ export const apiSlice = createApi({
     }),
 })
 
-export const {useGetColumnsQuery, useAddColumnsMutation, useDeleteColMutation, useGetColumnQuery, useUpdateColumnMutation} = apiSlice
+export const {useGetColumnsQuery, useAddColumnsMutation, useDeleteColMutation, useUpdateColumnMutation, useUpdateColumnNotRenderMutation} = apiSlice

@@ -4,7 +4,7 @@ import nextId from "react-id-generator";
 import './Colums.scss'
 
 
-const CreateCol = ({maxSortVal}) => {
+const CreateCol = () => {
     const [name, setName] = useState('')
     const [createCol] = useAddColumnsMutation()
 
@@ -17,7 +17,6 @@ const CreateCol = ({maxSortVal}) => {
         let newCol = {
             columnName: name,
             items: [],
-            sort: maxSortVal+1
         } 
         if(name.length > 0){
             createCol(newCol)

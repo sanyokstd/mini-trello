@@ -19,20 +19,26 @@
           "statusActive": false
         }
       ],
-      "sort": 1,
-      "id": 1
+      "id": 1,
+      "sort": 1
     },
     {
       "columnName": "3",
-      "items": [],
-      "sort": 3,
-      "id": 3
+      "items": [
+        {
+          "id": "0ed646ff-2929-4dbd-8ef7-375c40d669fa",
+          "name": "wde",
+          "statusActive": false
+        }
+      ],
+      "id": 3,
+      "sort": 2
     },
     {
       "columnName": "4",
       "items": [],
-      "sort": 4,
-      "id": 4
+      "id": 4,
+      "sort": 3
     }
   ]
 }
